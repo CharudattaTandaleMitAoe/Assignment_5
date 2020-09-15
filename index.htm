@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        span
+        {
+            color:red;
+        }
+        /*CSS for HTML PAGE*/
+        {
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+        }
+        html {
+            background-color: #b3ffff;
+            background: radial-gradient(rgba(179, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.3));
+            text-align: center;
+        }
+        /* PAGES */
+        .page {
+          display: none;
+          width: 98.5%;
+          min-height: 100%;
+          position: absolute;
+          padding: 1rem 2rem;
+        }
+        .active{
+          display: block;
+        }
+
+        /*CSS for Webpage*/
+        body {
+          font-family: "Verdana";
+          padding: 10px;
+          background: #f1f1f1;
+        }
+        .headerdesign {
+          padding: 10px;
+          text-align: center;
+          background: white;
+          color: #0045ff;
+          font-family: "times new roman";
+        }
+        h2 {
+          color: black;
+          font-size: 30px;
+          text-shadow: 2px 2px #0045ff;
+        }
+        .header h1 {
+          font-size: 50px;
+        }
+        .navbar {
+          overflow: hidden;
+          background-color: #0045ff;
+          position: -webkit-sticky;
+          position: relative;
+          top: 0;
+          width: 100%;
+        }
+        .navbar a {
+          float: left;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-family: "times new roman";
+          font-size: 25px;
+        }
+        .navbar a:hover {
+          background-color: #c5ecfd;
+          color: #0045ff;
+        }
+        .leftcol {
+          text-align: center;
+          float: left;
+          width: 100%;
+        }
+        .rightcol {
+          float: left;
+          text-align: center;
+          width: 50%;
+          background-color: #f1f1f1;
+          padding-left: 20px;
+        }
+        .effect {
+          background-color: black;
+          padding: 20px;
+          margin-top: 20px;
+        }
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        .footerdesign {
+          padding: 10px;
+          margin-top: 10px;
+          text-align: center;
+          font-size: 15px;
+          color: white;
+          background-color: black;
+          text-decoration: none;
+          font-weight: bold;
+        }
+        .wrapper{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          max-width: 550px;
+          background: rgba(0,0,0,0.8);
+          padding: 30px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .wrapper .title h1{
+          color: #c5ecfd;
+          text-align: center;
+          margin-bottom: 25px;
+        }
+
+        /*CSS for FORM*/
+        .contact-form{
+          display: flex;
+        }
+        .input-fields{
+          display: flex;
+          flex-direction: column;
+          margin-right: 4%;
+        }
+        .input-fields,
+        .msg{
+          width: 48%;
+        }
+        .input-fields .input,
+        .msg textarea{
+          margin: 10px 0;
+          background: transparent;
+          border: 0px;
+          border-bottom: 2px solid #c5ecfd;
+          padding: 10px;
+          color: #c5ecfd;
+          width: 100%;
+        }
+        .msg textarea{
+          height: 212px;
+        }
+        ::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: #c5ecfd;
+        }
+        ::-moz-placeholder {
+          /* Firefox 19+ */
+          color: #c5ecfd;
+        }
+        :-ms-input-placeholder {
+          /* IE 10+ */
+          color: #c5ecfd;
+        }
+        .btn {
+            background: #39b7dd;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /*CSS for TABLE*/
+        #nameDiv {
+        margin-top: 50px;
+        }
+
+        .input {
+          font-size: 25px;
+          color: #004d00;
+          font-weight: 700;
+          font-family: cursive;
+          margin: 20px;
+        }
+        #entry {
+          width: 150px;
+          height: 40px;
+          font-size: 23px;
+          font-family: "Times New Roman", cursive, sans-serif;
+          background-color: whitesmoke;
+          color: black;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+          margin-top: 10px;
+        }
+        table {
+          border-collapse: collapse;
+          width: 50%;
+          margin: 50px auto;
+          background-color: black;
+        }
+
+        table, th, td {
+          border: 2px solid black;
+          padding: 5px;
+        }
+
+        th {
+          font-size: 30px;
+          font-weight: 700;
+          font-family: Arial;
+          color: whitesmoke;
+        }
+
+        td {
+          font-size: 25px;
+          color: #0045ff;
+          font-weight: 400;
+          font-family: Georgia;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Tech Talks</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="mystyles.css">
+
+</head>
+<body>
+    <main>
+            <h2 align="center"><big><big>Registration Form</big></big></h2>
+              <div class="wrapper">
+                  <div class="contact-form">
+                    <div class="input-fields">
+                      <form name="myform" method="post" action="" onclick="return validateForm()">
+                        <input type="text" class="input" placeholder="Name" name="name"><br/>
+                        <span id="nam1"></span><br/>
+                        <input type="password" class="input" placeholder="Password" name="password"><br/>
+                        <span id="pword"></span><br/>
+                        <input type="text" class="input" placeholder="Confirm Password" name="cpassword"><br/>
+                        <span id="cpword"></span><br/>
+                        <input type="text" class="input" placeholder="Email" name="email"><br/>
+                        <span id="mail"></span><br/>
+                        <input type="text" class="input" placeholder="Mobile No" name="mobile"><br/>
+                        <span id="contact"></span><br/>
+                        <input type="button" id="entry" name="entry" value="Register">
+                        <input type="button" id="entry" name="entry" value="Clear" onclick="cl()"><br/>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    </main>
+    <big><big><a href="fetchdata.html">Show List</a></big></big><br>
+
+            <script>
+              function checkPword(str1)
+              {
+                var n1=0;
+                var n2=0;
+                var n3=0;
+                for(i=0;i<str1.length;i++)
+                {
+                  if(str1[i]>='a' && str1[i]<='z')
+                    n1++;
+                  else if(str1[i]>='A' && str1[i]<='Z')
+                    n2++;
+                  else if(str1[i]>='0' && str1[i]<='9')
+                    n3++;
+                }
+                if(n1>0 && n2>0 && n3>0)
+                  return true;
+                else
+                  return false;
+              }
+
+              function checkEmail(str1)
+              {
+                var posat=str1.indexOf("@");
+                var posdot=str1.indexOf(".");
+                if(posat!=-1 && posdot!=-1)
+                {
+                  if(posat>=1 && (posdot-posat)>=2 && (str1.length-1-posdot)>=2 && (str1.length-1-posdot)<=5)
+                    return true;
+                  else
+                    return false;
+                }
+                else
+                  return false;
+              }
+
+              function validateForm()
+              {
+                var nam=document.myform.name.value;
+                var password=document.myform.password.value;
+                var cpassword=document.myform.cpassword.value;
+                var email=document.myform.email.value;
+                var mobile=document.myform.mobile.value;
+                if(nam=="" || nam==null)
+                {
+                  document.getElementById("nam1").innerHTML="name should not be blank";
+                  return false;
+                }
+                else if(nam.length<3)
+                {
+                  document.getElementById("nam1").innerHTML="name length should be 3-30";
+                  return false;
+                }
+                else if(nam.length>30)
+                {
+                  document.getElementById("nam1").innerHTML="name length should be 3-30";
+                  return false;
+                }
+                else if(isNaN(nam)==false)
+                {
+                  document.getElementById("nam1").innerHTML="name should not be numeric";
+                  return false;
+                }
+                else if(password=="" || password==null)
+                {
+                  document.getElementById("pword").innerHTML="Password should not be blank";
+                  return false;
+                }
+                else if(password.length<6)
+                {
+                  document.getElementById("pword").innerHTML="Password should be of minimum 6 characters";
+                  return false;
+                }
+                else if(!checkPword(password))
+                {
+                  document.getElementById("pword").innerHTML="Password should have atleast 1 capital letter, 1 small letter and 1 digit";
+                  return false;
+                }
+                else if(password!=cpassword)
+                {
+                  document.getElementById("cpword").innerHTML="Password doesn't match";
+                  return false;
+                }
+                else if(email=="" || email==null)
+                {
+                  document.getElementById("mail").innerHTML="Email cannot be empty";
+                  return false;
+                }
+                else if(!checkEmail(email))
+                {
+                  document.getElementById("mail").innerHTML="Email not valid";
+                  return false;
+                }
+                else if(mobile=="" || mobile==null)
+                {
+                  document.getElementById("contact").innerHTML="Mobile number cannot be empty";
+                  return false;
+                }
+                else if(mobile.length!=10)
+                {
+                  document.getElementById("contact").innerHTML="Please enter 10 digit mobile number";
+                  return false;
+                }
+                else if(mobile[0]<'6')
+                {
+                  document.getElementById("contact").innerHTML="Please enter valid mobile number";
+                  return false;
+                }
+              }
+
+              var entry = document.getElementById("entry");
+              entry.addEventListener("click", displayDetails);
+
+              var row = 1;
+
+              function displayDetails() {
+                var name = document.myform.name.value;
+                var email = document.myform.email.value;
+                var mobile = document.myform.mobile.value;
+
+                var n = event.timeStamp;
+
+                var list = [];
+                list.push(name);
+                list.push(email);
+                list.push(mobile);
+                list.push(n);
+
+                if (!name || !email || !mobile) {
+                     alert("Please fill all the boxes");
+                     return;
+                }
+
+                var display = document.getElementsByTagName("table")[0];
+
+                var newRow = display.insertRow(row);
+
+                var cell0 = newRow.insertCell(0);
+                var cell1 = newRow.insertCell(1);
+                var cell2 = newRow.insertCell(2);
+                var cell3 = newRow.insertCell(3);
+
+                cell0.innerHTML = list[0];
+                cell1.innerHTML = list[1];
+                cell2.innerHTML = list[2];
+                cell3.innerHTML = list[3];
+
+                row++;
+                alert("Registration Successful, Please click on Clear to Continue");
+              }
+
+              function cl() {
+                document.myform.name.value="";
+                document.myform.password.value=""
+                document.myform.cpassword.value="";
+                document.myform.email.value="";
+                document.myform.mobile.value="";
+              }
+            </script>
+        </div>
+
+        <div class="page" id="detail">
+            <h2><big><big>DETAILS</big></big></h2>
+            <table name="display">
+              <tr>
+                  <th>NAME</th>
+                  <th>EMAIL</th>
+                  <th>MOBILE</th>
+                  <th>TIME STAMP</th>
+              </tr>
+            </table>
+       </div>
+
+    </main>
+    <script src="charu.js"></script>
+</body>
+</html>
